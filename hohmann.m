@@ -4,14 +4,12 @@
 
 % Constants
 my0   = 3.98601*1e5;  % Earth gravitational parameter [km^3/s^2]
-Re    = 6378.137;     % Equatorial Earth's radius [km]
-Rp    = 6356.7523;    % Polar Earth's radius [km]
+Re    = 6378.137*1e3;     % Equatorial Earth's radius [m]
 g     = 9.80665;      % Earth gravitational constant [m/s^2]
 
 % Values from trajectory
 v_init   = 7550;    % Initial velocity [m/s]
 alt_init = 500000;  % Initial altitude [m]
-lat      = 59.3496; % Geographical latitude under rocket at apogee [degrees]
 
 % Values from rocket
 mr  = 592;    % Mass of rocket excluding payload [kg]
@@ -20,8 +18,7 @@ Isp = 317;    % Isp of the upper stage rocket
 br  = 9.57;   % Burn rate [kg/s]
 
 % Calculations
-r_loc = sqrt(((Re^2*cosd(lat))^2+(Rp^2*sind(lat))^2)/((Re*cosd(lat))^2+(Rp*sind(lat))^2))*1e3; % Earth's radius under the rocket at apogee [m]
-v_fin = sqrt(my0*1e9/(r_loc+alt_init)); % Final velocity [m/s] Equation given by 2.37 Wiesel p. 60
+v_fin = sqrt(my0*1e9/(Re+alt_init)); % Final velocity [m/s] Equation given by 2.37 Wiesel p. 60
 delta_v = v_fin - v_init; % Delta V required [m/s]
 mp = m*(1-(1/exp((delta_v/(Isp*g))))); % Mass of propellant needed [kg] Equation given by 7.9 Wiesel p. 210
 t_burn = mp/br; % Burn time for the Hohmann transfer [s] Equation given by 7.28 Wiesel p. 218
