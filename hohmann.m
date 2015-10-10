@@ -1,6 +1,6 @@
 % Hohmann transfer for Big Bang rocket
 
-% Values that are not final: v_init, alt_init, lat
+% Values that are not final: v_init, alt_init
 
 % Constants
 my0   = 3.98601*1e5;  % Earth gravitational parameter [km^3/s^2]
